@@ -14,4 +14,38 @@
 
 .messages {
     padding: 10px;
+   
 }
+
+.messages div {
+    display: table;
+    
+    margin: 5px;
+    border-radius: 10px;
+    padding: 5px 5px 5px 10px ;
+    
+}
+.messages div:nth-child(2) {
+    
+     padding-right: 10px;
+}
+
+
+.message {
+    background-color: rgb(135, 135, 189);
+
+}
+
+.avaImage{
+   float: left;
+   max-width: 25%;
+
+}
+
+.avaImage img
+{
+    border-radius: 35px;
+    width: 40px;
+    height: 40px;
+}
+
