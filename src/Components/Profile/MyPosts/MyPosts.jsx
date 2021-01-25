@@ -9,7 +9,7 @@ let postData = [
 
 let postElements = postData
   .map(post => <Post message={post.message} count={post.count} />)
-const MyPosts = () => {
+const MyPosts = (props) => {
   return (
     <div>
       My Posts
