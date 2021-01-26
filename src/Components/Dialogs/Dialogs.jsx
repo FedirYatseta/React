@@ -15,6 +15,14 @@ const Dialogs = (props) => {
 
     let messageElements = props.messageData
         .map(message => <MessageItem message={message.message} />)
+    //створення ref в textarea 
+    let newMessageElement = React.createRef();
+    //стрелочна функція яка передається кнопці для додавання поста з textarea і викликається по кліку
+    let addMessage = () => {
+        let text = newMessageElement.current.value;
+        alert(text)
+
+    }
     return (
         <div className={s.dialogs}>
             <div className={s.dialogItem}>
@@ -25,12 +33,11 @@ const Dialogs = (props) => {
                     {messageElements}
                 </div>
                 <div className={s.sendMessage}>
-                        <textarea></textarea>
-                        <button class="buttons" href='#' >
-                             Send
-                        </button>
+                    <textarea ref={newMessageElement}></textarea>
+                    <button onClick={addMessage}>
+                        Send
+                    </button>
                 </div>
-
             </div>
         </div>
     )

@@ -4,11 +4,12 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import state from './redux/state';
+import {addPost} from './redux/state'
 
-
+//addPost('test')
 ReactDOM.render(
   <React.StrictMode>
-    <App postData={state.profilePage.postData} dialogData={state.messagesPage.dialogData} messageData={state.messagesPage.messageData} />
+    <App postData={state.profilePage.postData} dialogData={state.messagesPage.dialogData} messageData={state.messagesPage.messageData} addPost={addPost}/>
   </React.StrictMode>,
   document.getElementById('root')
 );

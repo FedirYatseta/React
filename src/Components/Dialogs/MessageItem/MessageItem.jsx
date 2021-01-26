@@ -6,15 +6,14 @@ const MessageItem = (props) => {
     return (
         <div>
             <div className={s.avaImage}>
-                    <RoundImage src={ava} />
+                <RoundImage src={ava} />
+            </div>
+            <div className={s.avaMessage}>
+                <div className={s.message}>
+                    {props.message}
                 </div>
-        <div className={s.avaMessage}>
-            <div className={s.message}>
-                {props.message}
             </div>
         </div>
-        </div>
-
     )
 }
 
