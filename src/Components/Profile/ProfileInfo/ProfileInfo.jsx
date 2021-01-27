@@ -3,7 +3,7 @@ import s from './ProfileInfo.module.css';
 import arh from '../../../img/arh.jpg';
 const ProfileInfo = (props) => {
   return (
-    <div>
+    <div className={s.ProfileInfo}>
       <div>
         <img src={arh} alt="arh" />
       </div>

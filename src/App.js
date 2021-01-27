@@ -9,8 +9,6 @@ import News from './Components/News/News';
 import Settings from './Components/Settings/Settings';
 import Music from './Components/Music/Music';
 
-
-
 const App = (props) => {
   
   return (
@@ -19,7 +17,7 @@ const App = (props) => {
         <Header />
         <Nav />
         <div className='app-wrapper-content'>
-          <Route path="/dialogs" render={ ()=><Dialogs dialogData={props.dialogData} messageData={props.messageData}/>}/>
+          <Route path="/dialogs" render={ ()=><Dialogs dialogData={props.dialogData} messageData={props.messageData} addMessage={props.addMessage}/>}/>
           <Route path="/profile" render={ ()=><Profile postData={props.postData} addPost={props.addPost}/>} />
           <Route path="/music" render={ ()=><Music />} />
           <Route path="/settings" render={ ()=><Settings />} />

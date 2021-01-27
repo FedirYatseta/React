@@ -1,3 +1,4 @@
+import { rendererEntriesTree } from '../Render';
 
 let state = {
     profilePage: {
@@ -28,10 +29,20 @@ let state = {
 export let addPost = (postMessage) => {
     let newPost = {
         id: '3',
-        message: 'Тільки не це!!!',
+        message: postMessage,
         count: '31'
     }
     state.profilePage.postData.push(newPost);
+    
+    rendererEntriesTree(state)// виклик функції рендера після додавання поста
+}
+//Відправка повідомлення
+export let addMessage = (newMessage) => {
+    let newMes = {
+        message: newMessage
+    }
+    state.messagesPage.messageData.push(newMes)
+    rendererEntriesTree(state) // виклик функції рендера після додавання повідомлення
 }
 
 export default state;

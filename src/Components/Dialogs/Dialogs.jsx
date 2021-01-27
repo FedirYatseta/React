@@ -1,10 +1,8 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
 import DialogsItem from './DialogItem/DialogItem';
 import s from './Dialogs.module.css';
 import MessageItem from './MessageItem/MessageItem';
-import ava from './../../img/ava.png';
-import RoundImage from './ImageAva/RoundImage';
+
 
 
 
@@ -20,8 +18,9 @@ const Dialogs = (props) => {
     //стрелочна функція яка передається кнопці для додавання поста з textarea і викликається по кліку
     let addMessage = () => {
         let text = newMessageElement.current.value;
-        alert(text)
-
+        props.addMessage(text);
+        //обнулення введеного тексту в полі
+        newMessageElement.current.value ='';
     }
     return (
         <div className={s.dialogs}>
