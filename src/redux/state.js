@@ -1,5 +1,7 @@
-import { rendererEntriesTree } from '../Render';
+let rendererEntriesTree = () => {
 
+    console.log('state was changed')
+}
 let state = {
     profilePage: {
         posts: [
@@ -38,27 +40,32 @@ export let addPost = () => {
     }
     state.profilePage.posts.push(newPost);
     state.profilePage.newPostText = '';
-    rendererEntriesTree(state)// виклик функції рендера після додавання поста
+    rendererEntriesTree()// виклик функції рендера після додавання поста
 }
 
 //Додавання посту в MyPost
 export let updateNewPostText = (newText) => {
     state.profilePage.newPostText = newText
-    rendererEntriesTree(state)// виклик функції рендера після додавання поста
+    rendererEntriesTree()// виклик функції рендера після додавання поста
 }
 //Відправка повідомлення
-export let addMessage = () => {
+export const addMessage = () => {
     let newMes = {
         message: state.messagesPage.newMessageText
     }
     state.messagesPage.messageData.push(newMes)
     state.messagesPage.newMessageText = '';
-    rendererEntriesTree(state) // виклик функції рендера після додавання повідомлення
+    rendererEntriesTree() // виклик функції рендера після додавання повідомлення
 }
 
-export let updateNewMessageText = (newText) => {
+export const updateNewMessageText = (newText) => {
     state.messagesPage.newMessageText = newText
-    rendererEntriesTree(state)// виклик функції рендера після додавання поста
+    rendererEntriesTree()// виклик функції рендера після додавання поста
 }
 
+export const subscribe = (observer) => {
+
+rendererEntriesTree = observer; // observer - тут оновлюється UI коли відбувається змінти в state
+}
+ 
 export default state;
