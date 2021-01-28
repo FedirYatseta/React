@@ -3,17 +3,19 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import {addMessage, addPost} from './redux/state'
+import {addMessage, addPost, updateNewPostText,updateNewMessageText} from './redux/state'
 
 
 export let rendererEntriesTree = (state) =>{
   ReactDOM.render(
     <React.StrictMode>
-      <App postData={state.profilePage.postData} 
-      dialogData={state.messagesPage.dialogData} 
+     <App state={state}
+      dialogData={state.messagesPage.dialogData}
       messageData={state.messagesPage.messageData} 
       addPost={addPost} 
-      addMessage={addMessage}/>
+      addMessage={addMessage}
+      updateNewPostText={updateNewPostText}
+      updateNewMessageText={updateNewMessageText}/>
     </React.StrictMode>,
     document.getElementById('root')
   );
