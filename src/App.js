@@ -4,39 +4,39 @@ import Dialogs from './Components/Dialogs/Dialogs';
 import Header from './Components/Header/Header';
 import Nav from './Components/Navbar/Navbar';
 import Profile from './Components/Profile/Profile';
-import { BrowserRouter, Route } from "react-router-dom"
+import { Route } from "react-router-dom"
 import News from './Components/News/News';
 import Settings from './Components/Settings/Settings';
 import Music from './Components/Music/Music';
 
 const App = (props) => {
 
+console.log(props.state)
   return (
-    <BrowserRouter>
-      <div className='app-wrapper'>
-        <Header />
-        <Nav />
-        <div className='app-wrapper-content'>
-          <Route path="/dialogs"
-            render={() => <Dialogs
-              dialogData={props.dialogData}
-              messageData={props.messageData}
-              addMessage={props.addMessage}
-              updateNewMessageText={props.updateNewMessageText}
-            />} />
-          <Route path="/profile"
-            render={() => <Profile
-              profilePage={props.state.profilePage}
-              addPost={props.addPost}
-              updateNewPostText={props.updateNewPostText}
-            />} />
-          <Route path="/music" render={() => <Music />} />
-          <Route path="/settings" render={() => <Settings />} />
-          <Route path="/news" render={() => <News />} />
-        </div>
-
+    <div className='app-wrapper'>
+      <Header />
+      <Nav />
+      <div className='app-wrapper-content'>
+        <Route path="/dialogs"
+          render={() => <Dialogs
+            dialogData={props.dialogData}
+            messageData={props.messageData}
+            addMessage={props.addMessage}
+            updateNewMessageText={props.updateNewMessageText}
+          />} />
+        <Route path="/profile"
+          render={() => <Profile
+            profilePage={props.state.profilePage}
+            addPost={props.addPost}
+            updateNewPostText={props.updateNewPostText}
+          />} />
+        <Route path="/music" render={() => <Music />} />
+        <Route path="/settings" render={() => <Settings />} />
+        <Route path="/news" render={() => <News />} />
       </div>
-    </BrowserRouter>
+
+    </div>
+
   );
 }
 

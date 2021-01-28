@@ -1,28 +1,28 @@
-import state from './redux/state';
+import store from './redux/state';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import {addMessage, addPost, updateNewPostText,updateNewMessageText, subscribe} from './redux/state'
+import { BrowserRouter } from 'react-router-dom';
 
- let rendererEntriesTree = () =>{
+let _callSubscribe = (state) => {
     ReactDOM.render(
-      <React.StrictMode>
-       <App state={state}
-        dialogData={state.messagesPage.dialogData}
-        messageData={state.messagesPage.messageData} 
-        addPost={addPost} 
-        addMessage={addMessage}
-        updateNewPostText={updateNewPostText}
-        updateNewMessageText={updateNewMessageText}/>
-      </React.StrictMode>,
-      document.getElementById('root')
+        <BrowserRouter>
+            <App state={store.getState()}
+                dialogData={store.getState().messagesPage.dialogData}
+                messageData={store.getState().messagesPage.messageData}
+                addPost={store.addPost.bind(store)}
+                addMessage={store.addMessage.bind(store)}
+                updateNewPostText={store.updateNewPostText.bind(store)}
+                updateNewMessageText={store.updateNewMessageText.bind(store)} />
+        </BrowserRouter>,
+        document.getElementById('root')
     );
-  }
-rendererEntriesTree(state);
+}
+_callSubscribe(store.getState());
 
-subscribe(rendererEntriesTree);
+store.subscribe(_callSubscribe);
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
