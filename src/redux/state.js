@@ -24,51 +24,48 @@ let store = {
             newMessageText: 'this is answer'
         }
     },
-    getState() {
-       
-        return this._state;
-    },
     _callSubscribe() {
         console.log('state was changed');
     },
+    getState() {
 
-    //Додавання посту в MyPost
-    addPost() {
-        let newPost = {
-            id: 5,
-            message: this._state.profilePage.newPostText,
-            count: 21
-        }
-        this._state.profilePage.posts.push(newPost);
-        this._state.profilePage.newPostText = '';
-        this._callSubscribe(this._state)// виклик функції рендера після додавання поста
+        return this._state;
     },
-
-    //Додавання посту в MyPost
-    updateNewPostText(newText) {
-        this._state.profilePage.newPostText = newText
-        this._callSubscribe(this._state)// виклик функції рендера після додавання поста
-    },
-    //Відправка повідомлення
-    
-    addMessage() {
-        debugger;
-        let newMes = {
-            message: this._state.messagesPage.newMessageText
-        }
-        this._state.messagesPage.messageData.push(newMes)
-        this._state.messagesPage.newMessageText = '';
-        this._callSubscribe() // виклик функції рендера після додавання повідомлення
-    },
-
-    updateNewMessageText(newText) {
-        this._state.messagesPage.newMessageText = newText
-        this._callSubscribe()// виклик функції рендера після додавання поста
-    },
-
     subscribe(observer) {
         this._callSubscribe = observer; // observer - тут оновлюється UI коли відбувається змінти в state
+    },
+
+    dispatch(action) {
+        if (action.type === 'ADD-POST') {
+            let newPost = {
+                id: 5,
+                message: this._state.profilePage.newPostText,
+                count: 21
+            }
+            this._state.profilePage.posts.push(newPost);
+            this._state.profilePage.newPostText = '';
+            this._callSubscribe(this._state)// виклик функції рендера після додавання поста
+        }
+        else if (action.type === 'UPDATE-NEW-POST-TEXT') {
+            this._state.profilePage.newPostText = action.newText
+            this._callSubscribe(this._state)// виклик функції рендера після додавання поста
+
+        }
+        else if (action.type === 'ADD-MESSAGE') {
+            let newMes = {
+                message: this._state.messagesPage.newMessageText
+            }
+            this._state.messagesPage.messageData.push(newMes)
+            this._state.messagesPage.newMessageText = '';
+            this._callSubscribe() // виклик функції рендера після додавання повідомлення}
+
+        }
+        else if (action.type === 'UPDATE-NEW-MESSAGE') {
+            this._state.messagesPage.newMessageText = action.newText
+            this._callSubscribe()// виклик функції рендера після додавання поста
+        }
+
     }
 }
-
 export default store;
+window.store = store;
