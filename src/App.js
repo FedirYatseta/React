@@ -11,7 +11,7 @@ import Music from './Components/Music/Music';
 
 const App = (props) => {
 
-  console.log(props.state)
+console.log(props.state)
   return (
     <div className='app-wrapper'>
       <Header />
@@ -21,12 +21,14 @@ const App = (props) => {
           render={() => <Dialogs
             dialogData={props.dialogData}
             messageData={props.messageData}
-            dispatch={props.dispatch}
+            addMessage={props.addMessage}
+            updateNewMessageText={props.updateNewMessageText}
           />} />
         <Route path="/profile"
           render={() => <Profile
             profilePage={props.state.profilePage}
-            dispatch={props.dispatch}
+            addPost={props.addPost}
+            updateNewPostText={props.updateNewPostText}
           />} />
         <Route path="/music" render={() => <Music />} />
         <Route path="/settings" render={() => <Settings />} />

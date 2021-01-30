@@ -12,8 +12,10 @@ let _callSubscribe = (state) => {
             <App state={store.getState()}
                 dialogData={store.getState().messagesPage.dialogData}
                 messageData={store.getState().messagesPage.messageData}
-                dispatch={store.dispatch.bind(store)}
-            />
+                addPost={store.addPost.bind(store)}
+                addMessage={store.addMessage.bind(store)}
+                updateNewPostText={store.updateNewPostText.bind(store)}
+                updateNewMessageText={store.updateNewMessageText.bind(store)} />
         </BrowserRouter>,
         document.getElementById('root')
     );

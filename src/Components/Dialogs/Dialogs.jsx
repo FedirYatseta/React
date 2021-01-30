@@ -14,12 +14,12 @@ const Dialogs = (props) => {
     let newMessageElement = React.createRef();//створення ref в textarea 
     //стрелочна функція яка передається кнопці для додавання поста з textarea і викликається по кліку
     let addMessage = () => {
-        props.dispatch({ type: 'ADD-MESSAGE' });
+        props.addMessage();
         //обнулення введеного тексту в полі
     }
     let changeMessageText = () => {
         let text = newMessageElement.current.value;
-        props.dispatch({ type: 'UPDATE-NEW-MESSAGE', newText: text })
+        props.updateNewMessageText(text)
 
     }
     return (
@@ -32,9 +32,7 @@ const Dialogs = (props) => {
                     {messageElements}
                 </div>
                 <div className={s.sendMessage}>
-                    <textarea ref={newMessageElement}
-                        onChange={changeMessageText}
-                        value={props.newMessageText} />
+                    <textarea ref={newMessageElement} onChange={changeMessageText} value={props.newMessageText} />
                     <button onClick={addMessage}>
                         Send
                     </button>
