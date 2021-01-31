@@ -2,7 +2,9 @@ import React from 'react';
 import DialogsItem from './DialogItem/DialogItem';
 import s from './Dialogs.module.css';
 import MessageItem from './MessageItem/MessageItem';
+import {AddMessageActionCreator, UpdateMessageActionCreator} from './../../redux/state'
 
+debugger;
 const Dialogs = (props) => {
 
     let dialogsElements = props.dialogData
@@ -11,17 +13,14 @@ const Dialogs = (props) => {
     let messageElements = props.messageData
         .map(message => <MessageItem message={message.message} />)
 
-    let newMessageElement = React.createRef();//створення ref в textarea 
-    //стрелочна функція яка передається кнопці для додавання поста з textarea і викликається по кліку
+    let newMessageText = props.newMessageText;
 
     let addMessage = () => {
-        
-        props.dispatch({type:'ADD-MESSAGE'});
-        //обнулення введеного тексту в полі
+        props.dispatch(AddMessageActionCreator());
     }
-    let changeMessageText = () => {
-        let text = newMessageElement.current.value;
-        props.dispatch({type:'UPDATE-MESSAGE-TEXT', newText:text})
+    let changeMessageText = (e) => {
+        let text = e.target.value;
+        props.dispatch(UpdateMessageActionCreator(text))
 
     }
     return (
@@ -34,7 +33,8 @@ const Dialogs = (props) => {
                     {messageElements}
                 </div>
                 <div className={s.sendMessage}>
-                    <textarea ref={newMessageElement} onChange={changeMessageText} value={props.newMessageText} />
+                    <textarea onChange={changeMessageText}
+                     value={newMessageText} />
                     <button onClick={addMessage}>
                         Send
                     </button>

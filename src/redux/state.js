@@ -1,3 +1,29 @@
+export const AddPostActionCreator = () => {
+    return {
+        type:'ADD-POST'
+    }
+}
+export const UpdateNewPostActionCreator = (text) => {
+    return {
+        type:'UPDATE-NEW-TEXT-POST',newText: text
+    }
+}
+export const AddMessageActionCreator = () => {
+    return {
+        type:'ADD-MESSAGE'
+    }
+}
+export const UpdateMessageActionCreator = (text) => {
+    return {
+        type:'UPDATE-MESSAGE-TEXT' , body:text
+    }
+}
+
+const ADD_POST = 'ADD-POST'
+const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-TEXT-POST'
+const ADD_MESSAGE = 'ADD-MESSAGE'
+const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-MESSAGE-TEXT'
+
 let store = {
     _state: {
         profilePage: {
@@ -17,11 +43,11 @@ let store = {
             ],
 
             messageData: [
-                { message: 'How are you?' },
-                { message: 'I am fine.' },
-                { message: 'What?' }
+                { id:1, message: 'How are you?' },
+                { id:2, message: 'I am fine.' },
+                { id:3, message: 'What?' }
             ],
-            newMessageText: 'this is answer'
+            newMessageText: ""
         }
     },
     getState() {
@@ -39,7 +65,7 @@ let store = {
     
     dispatch(action){
        
-        if(action.type ==='ADD-POST'){
+        if(action.type === ADD_POST){
             let newPost = {
                 id: 5,
                 message: this._state.profilePage.newPostText,
@@ -49,21 +75,19 @@ let store = {
             this._state.profilePage.newPostText = '';
             this._callSubscribe(this._state)// виклик функції рендера після додавання поста
         }
-        else if(action.type === 'UPDATE-NEW-TEXT-POST'){
+        else if(action.type === UPDATE_NEW_POST_TEXT){
             this._state.profilePage.newPostText = action.newText
             this._callSubscribe(this._state)// виклик функції рендера після додавання поста
         }
     
-        else if(action.type === 'ADD-MESSAGE'){
-            let newMes = {
-                message: this._state.messagesPage.newMessageText
-            }
-            this._state.messagesPage.messageData.push(newMes)
+        else if(action.type === ADD_MESSAGE){
+            let body = this._state.messagesPage.newMessageText;
+            this._state.messagesPage.messageData.push({id:4, message: body})
             this._state.messagesPage.newMessageText = '';
             this._callSubscribe(this._state) // виклик функції рендера після додавання повідомлення
         }
-        else if (action.type === 'UPDATE-MESSAGE-TEXT'){
-            this._state.messagesPage.newMessageText = action.newText
+        else if (action.type === UPDATE_NEW_MESSAGE_TEXT){
+            this._state.messagesPage.newMessageText = action.body;
             this._callSubscribe(this._state)// виклик функції рендера після додавання поста
         }
 
