@@ -13,13 +13,15 @@ const Dialogs = (props) => {
 
     let newMessageElement = React.createRef();//створення ref в textarea 
     //стрелочна функція яка передається кнопці для додавання поста з textarea і викликається по кліку
+
     let addMessage = () => {
-        props.addMessage();
+        
+        props.dispatch({type:'ADD-MESSAGE'});
         //обнулення введеного тексту в полі
     }
     let changeMessageText = () => {
         let text = newMessageElement.current.value;
-        props.updateNewMessageText(text)
+        props.dispatch({type:'UPDATE-MESSAGE-TEXT', newText:text})
 
     }
     return (
