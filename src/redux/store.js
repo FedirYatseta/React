@@ -1,5 +1,6 @@
 import  MessageReducer from './dialogReducer';
 import  ProfileReducer  from './profileReducer';
+
 let store = {
     _state: {
         profilePage: {
@@ -32,11 +33,9 @@ let store = {
     _callSubscribe() {
         console.log('state was changed');
     },
-
     subscribe(observer) {
-        this._callSubscribe = observer; // observer - тут оновлюється UI коли відбувається змінти в state
+        this._callSubscribe = observer; // observer -  оновлюється UI коли відбувається змінти в state
     },
-
     dispatch(action){
        this._state.profilePage =  ProfileReducer(this._state.profilePage, action)
        this._state.messagesPage =  MessageReducer(this._state.messagesPage, action)
