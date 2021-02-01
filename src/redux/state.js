@@ -1,29 +1,5 @@
-export const AddPostActionCreator = () => {
-    return {
-        type:'ADD-POST'
-    }
-}
-export const UpdateNewPostActionCreator = (text) => {
-    return {
-        type:'UPDATE-NEW-TEXT-POST',newText: text
-    }
-}
-export const AddMessageActionCreator = () => {
-    return {
-        type:'ADD-MESSAGE'
-    }
-}
-export const UpdateMessageActionCreator = (text) => {
-    return {
-        type:'UPDATE-MESSAGE-TEXT' , body:text
-    }
-}
-
-const ADD_POST = 'ADD-POST'
-const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-TEXT-POST'
-const ADD_MESSAGE = 'ADD-MESSAGE'
-const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-MESSAGE-TEXT'
-
+import  MessageReducer from './dialogReducer';
+import  ProfileReducer  from './profileReducer';
 let store = {
     _state: {
         profilePage: {
@@ -51,7 +27,6 @@ let store = {
         }
     },
     getState() {
-       
         return this._state;
     },
     _callSubscribe() {
@@ -62,36 +37,10 @@ let store = {
         this._callSubscribe = observer; // observer - тут оновлюється UI коли відбувається змінти в state
     },
 
-    
     dispatch(action){
-       
-        if(action.type === ADD_POST){
-            let newPost = {
-                id: 5,
-                message: this._state.profilePage.newPostText,
-                count: 21
-            }
-            this._state.profilePage.posts.push(newPost);
-            this._state.profilePage.newPostText = '';
-            this._callSubscribe(this._state)// виклик функції рендера після додавання поста
-        }
-        else if(action.type === UPDATE_NEW_POST_TEXT){
-            this._state.profilePage.newPostText = action.newText
-            this._callSubscribe(this._state)// виклик функції рендера після додавання поста
-        }
-    
-        else if(action.type === ADD_MESSAGE){
-            let body = this._state.messagesPage.newMessageText;
-            this._state.messagesPage.messageData.push({id:4, message: body})
-            this._state.messagesPage.newMessageText = '';
-            this._callSubscribe(this._state) // виклик функції рендера після додавання повідомлення
-        }
-        else if (action.type === UPDATE_NEW_MESSAGE_TEXT){
-            this._state.messagesPage.newMessageText = action.body;
-            this._callSubscribe(this._state)// виклик функції рендера після додавання поста
-        }
-
-        
+       this._state.profilePage =  ProfileReducer(this._state.profilePage, action)
+       this._state.messagesPage =  MessageReducer(this._state.messagesPage, action)
+       this._callSubscribe(this._state);
     }
 }
 
