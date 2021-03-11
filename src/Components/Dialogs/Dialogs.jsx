@@ -4,13 +4,11 @@ import s from './Dialogs.module.css';
 import MessageItem from './MessageItem/MessageItem';
 import {AddMessageActionCreator, UpdateMessageActionCreator} from '../../redux/dialogReducer'
 
-debugger;
 const Dialogs = (props) => {
-
-    let dialogsElements = props.dialogData
+    let dialogsElements = props.messagesPage.dialogData
         .map(dialog => <DialogsItem name={dialog.name} id={dialog.id} />);
 
-    let messageElements = props.messageData
+    let messageElements = props.messagesPage.messageData
         .map(message => <MessageItem message={message.message} />)
 
     let newMessageText = props.newMessageText;

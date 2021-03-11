@@ -11,26 +11,30 @@ import Music from './Components/Music/Music';
 
 const App = (props) => {
 
-console.log(props.state)
+  console.log(props.state)
   return (
     <div className='app-wrapper'>
       <Header />
       <Nav />
       <div className='app-wrapper-content'>
-        <Route path="/dialogs"
-          render={() => <Dialogs
-            dialogData={props.dialogData}
-            messageData={props.messageData}
-            dispatch={props.dispatch}
-          />} />
         <Route path="/profile"
           render={() => <Profile
             profilePage={props.state.profilePage}
             dispatch={props.dispatch}
           />} />
+        <Route path="/dialogs"
+          render={() => <Dialogs
+            messagesPage={props.state.messagesPage}
+            dispatch={props.dispatch}
+          />} />
+
         <Route path="/music" render={() => <Music />} />
         <Route path="/settings" render={() => <Settings />} />
-        <Route path="/news" render={() => <News />} />
+        <Route path="/news"
+          render={() => <News
+            newsPage ={props.state.newsPage}
+            dispatch={props.dispatch}
+          />} />
       </div>
 
     </div>

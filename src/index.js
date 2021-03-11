@@ -9,10 +9,9 @@ import { BrowserRouter } from 'react-router-dom';
 let rendererEntireTree = (state) => {
     ReactDOM.render(
         <BrowserRouter>
-            <App state={store.getState()}
-                dialogData={store.getState().messagesPage.dialogData}
-                messageData={store.getState().messagesPage.messageData}
+            <App state={state}
                 dispatch={store.dispatch.bind(store)}
+                store={store}
                  />
         </BrowserRouter>,
         document.getElementById('root')

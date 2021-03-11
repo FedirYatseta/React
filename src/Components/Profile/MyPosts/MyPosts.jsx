@@ -18,7 +18,7 @@ const MyPosts = (props) => {
     let text = newPostElement.current.value;
     props.dispatch(UpdateNewPostActionCreator(text));
   }
-  return (
+  return ( 
     <div>
       <h3>My Posts</h3>
       <div>

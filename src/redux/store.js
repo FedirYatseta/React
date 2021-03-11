@@ -1,4 +1,4 @@
-import  MessageReducer from './dialogReducer';
+/*import  MessageReducer from './dialogReducer';
 import  ProfileReducer  from './profileReducer';
 
 let store = {
@@ -44,3 +44,4 @@ let store = {
 }
 
 export default store;
+*/

@@ -1,11 +1,18 @@
 import React from 'react';
-import s from './News.module.css';
+import NewsItem from './NewItem/NewItem';
+
+
 const News = (props) => {
-    return (
-        <div className={s.News}>
-            news
+    let newsElements = props.newsPage.newsData
+    .map(news => <NewsItem name={news.name} text={news.text} imgTitle={news.imgTitle}/>);
+
+return (
+    <div >
+        <div> 
+          {newsElements}
         </div>
-    )
+    </div>
+)
 }
 
 export default News;
