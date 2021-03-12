@@ -1,13 +1,21 @@
 import React from 'react';
-import NewsItem from './NewItem/NewItem';
+import StoreContext from './../../StoreContext';
+import News from './../../Components/News/News'
 
-
-const NewsContainer = (props) => {
-
-    let state = props.store.getState().newsPage;
+const NewsContainer = () => {
     
-
-return <News newsPage={state} />
+    return (
+        <StoreContext.Consumer>
+            {
+                (store) => {
+                    let state = store.getState().newsPage;
+                    return  (
+                    <News newsPage={state} />
+                    )
+                }
+            } 
+        </StoreContext.Consumer>
+    )
 }
 
 export default NewsContainer;
