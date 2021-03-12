@@ -2,23 +2,20 @@ import React from 'react';
 import DialogsItem from './DialogItem/DialogItem';
 import s from './Dialogs.module.css';
 import MessageItem from './MessageItem/MessageItem';
-import {AddMessageActionCreator, UpdateMessageActionCreator} from '../../redux/dialogReducer'
 
 const Dialogs = (props) => {
-    let dialogsElements = props.messagesPage.dialogData
-        .map(dialog => <DialogsItem name={dialog.name} id={dialog.id} />);
-
-    let messageElements = props.messagesPage.messageData
-        .map(message => <MessageItem message={message.message} />)
-
-    let newMessageText = props.newMessageText;
+debugger;
+    let state = props.messagesPage;
+    let dialogsElements = state.dialogData.map(d => <DialogsItem name={d.name} id={d.id} />);
+    let messageElements = state.messageData.map(m => <MessageItem message={m.message} />)
+    let newMessageText = state.newMessageText;
 
     let addMessage = () => {
-        props.dispatch(AddMessageActionCreator());
+        props.sendMessage();
     }
     let changeMessageText = (e) => {
         let text = e.target.value;
-        props.dispatch(UpdateMessageActionCreator(text))
+        props.updateNewMessageBody(text)
 
     }
     return (
