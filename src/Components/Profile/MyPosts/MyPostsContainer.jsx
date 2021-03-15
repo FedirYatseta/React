@@ -5,10 +5,8 @@ import StoreContext from './../../../StoreContext';
 
 
 const MyPostsContainer = () => {
-  return (
-    <StoreContext.Consumer>
-      {
-        (store) => {
+  return <StoreContext.Consumer>
+      { (store) => {
           let state = store.getState();
           let addPost = () => {
             store.dispatch(AddPostActionCreator());
@@ -27,7 +25,7 @@ const MyPostsContainer = () => {
         }
       }
     </StoreContext.Consumer>
-  )
+  
 }
 
 export default MyPostsContainer;

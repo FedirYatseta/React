@@ -5,25 +5,22 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
-import StoreContext from './StoreContext';
+import {Provider} from './StoreContext'
 
-let rendererEntireTree = (state) => {
+
+let rendererEntireTree = () => {
+    debugger;
     ReactDOM.render(
         <BrowserRouter>
-            <StoreContext.Provider value={store}>
+            <Provider store={store}>
                 <App />
-            </StoreContext.Provider>
-
-        </BrowserRouter>,
-        document.getElementById('root')
-    );
+            </Provider>
+        </BrowserRouter>, document.getElementById('root'));
 }
-rendererEntireTree(store.getState());
+rendererEntireTree();
 
 store.subscribe(() => {
-    let state = store.getState();
-    rendererEntireTree(state);
-
+    rendererEntireTree();
 }
 );
 // If you want to start measuring performance in your app, pass a function

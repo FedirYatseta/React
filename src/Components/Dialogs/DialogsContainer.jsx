@@ -5,10 +5,8 @@ import StoreContext from './../../StoreContext';
 
 
 const DialogsContainer = () => {
-    return (
-        <StoreContext.Consumer>
-            {
-            (store) => {
+    return <StoreContext.Consumer>
+            { (store) => {
                 let state = store.getState().messagesPage;
     
                 let addMessage = () => {
@@ -23,7 +21,6 @@ const DialogsContainer = () => {
             }
         }
         </StoreContext.Consumer>
-    )
 }
 
 

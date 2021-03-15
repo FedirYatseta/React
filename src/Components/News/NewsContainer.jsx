@@ -4,10 +4,8 @@ import News from './../../Components/News/News'
 
 const NewsContainer = () => {
     
-    return (
-        <StoreContext.Consumer>
-            {
-                (store) => {
+    return <StoreContext.Consumer>
+            { (store) => {
                     let state = store.getState().newsPage;
                     return  (
                     <News newsPage={state} />
@@ -15,7 +13,7 @@ const NewsContainer = () => {
                 }
             } 
         </StoreContext.Consumer>
-    )
+    
 }
 
 export default NewsContainer;

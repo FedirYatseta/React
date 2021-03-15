@@ -9,7 +9,8 @@ import Music from './Components/Music/Music';
 import DialogsContainer from './Components/Dialogs/DialogsContainer'
 import NewsContainer from './Components/News/NewsContainer';
 
-const App = (props) => {
+const App = () => {
+  debugger;
   return (
     <div className='app-wrapper'>
       <Header />
