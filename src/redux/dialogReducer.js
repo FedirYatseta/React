@@ -34,18 +34,16 @@ const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-MESSAGE-TEXT'
 const MessageReducer = (state=initialState, action) => {
     switch (action.type) {
         case ADD_MESSAGE: {
-            let body = state.newMessageText;
-            let copyState = {...state};
-            copyState.messageData = [...copyState.messageData];
-            copyState.messageData.push({ id: 4, message: body })
-            copyState.newMessageText = '';
-            // виклик функції рендера після додавання повідомлення
-            return copyState;
-        }
-        case UPDATE_NEW_MESSAGE_TEXT: {
-            let copyState = {...state};
-            copyState.newMessageText = action.body;
-            return copyState;
+        let body = state.newMessageText;
+        return {
+            ...state,
+            messageData: [...state.messageData , { id: 4, message: body }],
+            newMessageText:''
+        }}
+        case UPDATE_NEW_MESSAGE_TEXT: 
+        return {
+            ...state,
+            newMessageText: action.body
         }
         default:
             return state;

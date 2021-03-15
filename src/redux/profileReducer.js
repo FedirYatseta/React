@@ -10,36 +10,36 @@ export const UpdateNewPostActionCreator = (text) => {
 }
 
 let initialState = {
-        posts: [
-            { id: 1, message: 'Hi, how are you?', count: 12 },
-            { id: 2, message: 'It is my first post', count: 11 }
-        ],
-        newPostText: 'it-kamasutra.com'
+    posts: [
+        { id: 1, message: 'Hi, how are you?', count: 12 },
+        { id: 2, message: 'It is my first post', count: 11 }
+    ],
+    newPostText: 'it-kamasutra.com'
 }
 
 const ADD_POST = 'ADD-POST'
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-TEXT-POST'
 
-const ProfilePageReducer = (state=initialState, action) => {
+const ProfilePageReducer = (state = initialState, action) => {
 
     switch (action.type) {
         case ADD_POST: {
-            let newPost = {
+            let newPostText = {
                 id: 5,
                 message: state.newPostText,
                 count: 21
+            };
+            return {
+                ...state,
+                posts: [...state.posts, newPostText],
+                newPostText:''
             }
-            let copyState = {...state};
-            copyState.posts = [...state.posts]
-            copyState.posts.push(newPost);
-            copyState.newPostText = '';
-            return copyState
         }
-        case UPDATE_NEW_POST_TEXT:{
-            let copyState = {...state};
-            copyState.newPostText = action.newText
-            return copyState
-        }
+        case UPDATE_NEW_POST_TEXT:
+            return {
+                ...state,
+                newPostText: action.newText
+            }
         default: return state;
     }
 }
