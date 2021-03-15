@@ -10,7 +10,7 @@ import DialogsContainer from './Components/Dialogs/DialogsContainer'
 import NewsContainer from './Components/News/NewsContainer';
 
 const App = () => {
-  debugger;
+ 
   return (
     <div className='app-wrapper'>
       <Header />
