@@ -8,10 +8,10 @@ import Settings from './Components/Settings/Settings';
 import Music from './Components/Music/Music';
 import DialogsContainer from './Components/Dialogs/DialogsContainer'
 import NewsContainer from './Components/News/NewsContainer';
-import Users from './Components/Users/Users';
+import UsersContainer from './Components/Users/UsersContainer';
 
 const App = () => {
- 
+ //debugger;
   return (
     <div className='app-wrapper'>
       <Header />

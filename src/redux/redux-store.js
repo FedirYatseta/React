@@ -10,7 +10,7 @@ let reducers = combineReducers(
         profilePage:  ProfilePageReducer,
         messagesPage:  MessageReducer,
         newsPage: NewsReducer,
-        UsersPage: UsersReducer
+        usersPage: UsersReducer
     }
 );
 
