@@ -9,7 +9,6 @@ export const UpdateMessageActionCreator = (text) => {
     }
 }
 
-
 let initialState = {
         dialogData: [
             { name: 'Fedir', id: '1' },
@@ -25,8 +24,6 @@ let initialState = {
             { id: 3, message: 'What?' }
         ],
         newMessageText: ""
-    
-
 }
 const ADD_MESSAGE = 'ADD-MESSAGE'
 const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-MESSAGE-TEXT'
