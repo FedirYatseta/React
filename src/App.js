@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import Header from './Components/Header/Header';
 import Nav from './Components/Navbar/Navbar';
-import Profile from './Components/Profile/Profile';
+import ProfileContainer from './Components/Profile/ProfileContainer';
 import { Route } from "react-router-dom"
 import Settings from './Components/Settings/Settings';
 import Music from './Components/Music/Music';
@@ -17,7 +17,7 @@ const App = () => {
       <Header />
       <Nav />
       <div className='app-wrapper-content'>
-        <Route path="/profile" render={() => <Profile />} />
+        <Route path="/profile" render={() => <ProfileContainer />} />
         <Route path="/dialogs" render={() => <DialogsContainer />} />
         <Route path="/music" render={() => <Music />} />
         <Route path="/settings" render={() => <Settings />} />
