@@ -2,3 +2,14 @@
     width: 100px;
     height: 100px;
 }
+
+
+.switch{
+    font-size:larger;
+    margin: 2px;
+    background-color: beige;
+}
+
+.wrapperButton{
+    border: 1px solid #343434;
+}
