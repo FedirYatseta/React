@@ -3,12 +3,14 @@
 let initialState = {
     posts: [ ],
     newPostText: 'it-kamasutra.com',
-    profile: null
+    profile: null,
+    searchJob: true
 }
 
 const ADD_POST = 'ADD-POST'
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-TEXT-POST'
 const SET_USER_PROFILE = 'SET_USER_PROFILE'
+const SET_JOB_PROFILE = 'SET_JOB_PROFILE'
 
 const ProfilePageReducer = (state = initialState, action) => {
 
@@ -32,6 +34,9 @@ const ProfilePageReducer = (state = initialState, action) => {
             }
             case SET_USER_PROFILE:
                 return{ ...state, profile: action.profile}
+
+                case SET_JOB_PROFILE:
+                    return{ ...state, job: action.job}
         default: return state;
     }
 }
@@ -44,4 +49,6 @@ export const AddPostActionCreator = () => {
 }
 export const UpdateNewPostActionCreator = (text) => ({ type: 'UPDATE-NEW-TEXT-POST', text})
 export const setUserProfile = (profile) => ({ type: 'SET_USER_PROFILE', profile})
+export const setJobProfile = (job) => ({ type: 'SET_JOB_PROFILE', job})
+
 export default ProfilePageReducer;

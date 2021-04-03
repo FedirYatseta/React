@@ -8,9 +8,9 @@ const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING'
 const SET_CURRENT_PAGE = "SET_CURRENT_PAGE"
 let initialState = {
     usersData: [],
-    pageSize: 20,
+    pageSize: 10,
     totalUserCount: 0,
-    currentPage: 2,
+    currentPage: 1,
     isFetching: true
 }
 

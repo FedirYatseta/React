@@ -1,8 +1,20 @@
+.ProfileInfo {
+    display: flex;
+    flex-wrap: wrap;
+  
+}
 .ProfileInfo img {
     width: 250px;
     height: auto;
+    border-radius: 1ch;
+  
 }
 
-.contact{
-    border: 1px solid #343434;
+.contact .jobimg img{
+    width: 50px;
+    height: auto;
+}
+
+.ProfileInfo div {
+    margin: 10px;
 }
