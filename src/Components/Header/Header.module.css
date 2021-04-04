@@ -1,4 +1,7 @@
 .header{
+  display: flex;
+  justify-content:flex-end;
+  align-items:center;
     margin: 10px;
     grid-area: h;
     background-color: rgb(133, 152, 236);
@@ -8,4 +11,9 @@
   .header img {
   
     width: 80px;
+  }
+
+  .header .blockLogin  {
+    padding: 10px;
+
   }
