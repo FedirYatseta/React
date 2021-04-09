@@ -9,7 +9,7 @@ import Music from './Components/Music/Music';
 import DialogsContainer from './Components/Dialogs/DialogsContainer'
 import NewsContainer from './Components/News/NewsContainer';
 import UsersContainer from './Components/Users/UsersContainer';
-
+import Login from './Components/login/login';
 const App = () => {
   return (
     <div className='app-wrapper'>
@@ -22,6 +22,7 @@ const App = () => {
         <Route path="/settings" render={() => <Settings />} />
         <Route path="/news" render={() => <NewsContainer />} />
         <Route path="/users" render={() => <UsersContainer />} />
+        <Route path="/login" render={() => <Login />} />
       </div>
     </div>
   );

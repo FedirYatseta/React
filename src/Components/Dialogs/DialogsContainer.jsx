@@ -5,7 +5,8 @@ import { AddMessageActionCreator, UpdateMessageActionCreator } from '../../redux
 
 let mapStateToProps = (state) => {
     return {
-        messagesPage: state.messagesPage
+        messagesPage: state.messagesPage,
+        isAuth: state.authMe.isAuth
     }
 }
 

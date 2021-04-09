@@ -1,5 +1,6 @@
 import React from 'react';
 import s from './ProfileInfo.module.css';
+
 import arh from '../../../img/SearchJob.jpg';
 import job from '../../../img/job.jpg';
 import ava from '../../../img/ava.png';
