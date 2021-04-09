@@ -13,14 +13,14 @@ const ProfileInfo = (props) => {
     <div className={s.ProfileInfo}>
       <div>
         <div><h1>{props.profile.fullName}</h1></div>
-        <img src={props.profile.photos.large != null ? props.profile.photos.large : `${ava}`} />
+        <img src={props.profile.photos.large != null ? props.profile.photos.large : `${ava}`} alt=''/>
       </div>
 
       <div className={s.contact}>
         <div>
           <span>Про мене - {props.profile.aboutMe} </span>
         </div>
-        <div className={s.jobimg}>{props.profile.lookingForAJob ? <img src={arh} /> : <img src={job} />}
+        <div className={s.jobimg}>{props.profile.lookingForAJob ? <img src={arh} alt='' /> : <img src={job} alt='' />}
           <div>{props.profile.lookingForAJobDescription}</div> </div>
         <h3>Контакти</h3>
         <div> {props.profile.contacts.facebook}</div>

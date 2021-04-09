@@ -1,3 +1,5 @@
+import { usersAPI } from '../API/api'
+
 let initialState = {
     userid: null,
     email: null,
@@ -14,7 +16,18 @@ const AuthReducer = (state = initialState, action) => {
             return state;
     }
 }
-debugger;
 export const setAuthMe = (id, email, login) => ({ type: 'AUTH_ME', data: { id, email, login } })
 
+export const loginThunk = () => {
+    return (dispatch) => {
+        debugger;
+        usersAPI.auth()
+            .then(response => {
+                if (response.data.resultCode === 0) {
+                    let { email, id, login } = response.data.data;
+                    dispatch(setAuthMe(id, email, login))
+                }
+            })
+    }
+}
 export default AuthReducer;
