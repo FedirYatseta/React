@@ -8,6 +8,7 @@ const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING'
 
 const SET_CURRENT_PAGE = "SET_CURRENT_PAGE"
 const TOGGLE_IS_FOLLOWING_PROGRESS = "TOGGLE_IS_FOLLOWING_PROGRESS"
+
 let initialState = {
     usersData: [],
     pageSize: 10,
@@ -15,6 +16,7 @@ let initialState = {
     currentPage: 1,
     isFetching: true,
     followingInProgress: [],
+   
 }
 
 const UsersReducer = (state = initialState, action) => {
@@ -61,6 +63,7 @@ const UsersReducer = (state = initialState, action) => {
                     : state.followingInProgress.filter(id => id !== action.userId)
             }
         }
+        
         default:
             return state;
     }
@@ -111,6 +114,9 @@ export const unfollow = (userId) => {
             });
     }
 }
+
+
+
 
 
 export default UsersReducer;

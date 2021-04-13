@@ -1,11 +1,10 @@
 import React from 'react';
 import Profile from './Profile';
 import { connect } from 'react-redux';
-import { setUserProfile, setJobProfile,profilePage } from '../../redux/profileReducer'
+import { setUserProfile, setJobProfile, profilePage, getUserStatus,updateStatus } from '../../redux/profileReducer'
 import { withRouter } from 'react-router';
-
-import {Redirect} from 'react-router-dom'
-import { withAuthRedirect } from '../../hoc/whithAuthRedirect';
+import { withAuthRedirect } from '../../hoc/withAuthRedirect';
+import { compose } from 'redux';
 
 class ProfileContainer extends React.Component {
 
@@ -14,22 +13,29 @@ class ProfileContainer extends React.Component {
     if (!userId) {
       userId = 2
     }
-    this.props.profilePage(userId)
+    this.props.profilePage(userId);
+    this.props.getUserStatus(userId);
   }
   render() {
     return (
       <div>
-        <Profile {...this.props} profile={this.props.profile} />
+        <Profile {...this.props}
+          profile={this.props.profile}
+          status={this.props.status}
+          updateStatus={this.props.updateStatus}
+        />
       </div>
     )
   }
 }
 
-let AuthRedirectComponent = withAuthRedirect(ProfileContainer)
-
 let mapStateToProps = (state) => ({
-  profile: state.profilePage.profile
+  profile: state.profilePage.profile,
+  status: state.profilePage.status
 })
 
-let ProfileUrlDataContainer = withRouter(AuthRedirectComponent)
-export default connect(mapStateToProps, { setUserProfile, setJobProfile, profilePage })(ProfileUrlDataContainer);
+export default compose(
+  connect(mapStateToProps, { setUserProfile, setJobProfile, profilePage, getUserStatus, updateStatus }),
+  withRouter,
+  withAuthRedirect)(ProfileContainer)
+

@@ -5,16 +5,18 @@ import arh from '../../../img/SearchJob.jpg';
 import job from '../../../img/job.jpg';
 import ava from '../../../img/ava.png';
 import Preloader from '../../Preloader/Preloader';
+import ProfileStatus from './ProfileStatus';
 const ProfileInfo = (props) => {
-
   if (!props.profile) {
     return <div className={s.preloaderContainer}> <Preloader /></div>
   }
   return (
     <div className={s.ProfileInfo}>
       <div>
+        <div> Статус:<ProfileStatus status={props.status } updateStatus={props.updateStatus} /></div>
         <div><h1>{props.profile.fullName}</h1></div>
-        <img src={props.profile.photos.large != null ? props.profile.photos.large : `${ava}`} alt=''/>
+        <img src={props.profile.photos.large != null ? props.profile.photos.large : `${ava}`} alt='' />
+
       </div>
 
       <div className={s.contact}>
