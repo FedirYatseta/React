@@ -5,6 +5,7 @@ import NewsReducer from './newsReducer';
 import UsersReducer from "./usersReducer";
 import AuthReducer from './authReducer'
 import  thunkMiddleware  from 'redux-thunk'
+import { reducer as formReducer } from 'redux-form'
 
 let reducers = combineReducers(
     {
@@ -13,7 +14,8 @@ let reducers = combineReducers(
         messagesPage:  MessageReducer,
         newsPage: NewsReducer,
         usersPage: UsersReducer,
-        authMe: AuthReducer
+        authMe: AuthReducer,
+        form: formReducer
     }
 );
 

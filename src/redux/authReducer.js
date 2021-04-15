@@ -1,4 +1,4 @@
-import { usersAPI } from '../API/api'
+import { authMeAPI } from '../API/api'
 
 let initialState = {
     userid: null,
@@ -8,20 +8,26 @@ let initialState = {
 }
 
 const AUTH_ME = 'AUTH_ME'
+
+const LOGIN_FORM = 'LOGIN_FORM'
+
 const AuthReducer = (state = initialState, action) => {
     switch (action.type) {
         case AUTH_ME:
             return { ...state, ...action.data, isAuth: true }
+        case LOGIN_FORM:
+            return { ...state, ...action.data }
         default:
             return state;
     }
 }
 export const setAuthMe = (id, email, login) => ({ type: 'AUTH_ME', data: { id, email, login } })
 
+export const setLogin = (email, password, rememberMe) => ({ type: 'LOGIN_FORM', data: { email, password, rememberMe } })
+
 export const loginThunk = () => {
     return (dispatch) => {
-        debugger;
-        usersAPI.auth()
+        authMeAPI.auth()
             .then(response => {
                 if (response.data.resultCode === 0) {
                     let { email, id, login } = response.data.data;
@@ -30,4 +36,20 @@ export const loginThunk = () => {
             })
     }
 }
+
+export const loginForm = () => {
+    return (dispatch) => {
+        authMeAPI.login()
+            .then(response => {
+                if (response.data.resultCode === 0) {
+                    let { email, password, rememberMe } = response.data.data;
+                    dispatch(setLogin(email, password, rememberMe))
+                }
+            })
+    }
+}
+
+
+
+
 export default AuthReducer;

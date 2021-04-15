@@ -23,11 +23,27 @@ export const usersAPI = {
     follow(userId) {
         return instance.post(`follow/${userId}`)
     },
+  
+   
+}
+
+export const authMeAPI= {
     auth() {
         return instance.get('auth/me/')
     },
-   
+    login( email,
+        password,
+        rememberMe,
+        captcha) {
+        return instance.post(`auth/login/`,{
+            email,
+            password,
+            rememberMe,
+            captcha
+        })
+    },
 }
+
 
 export const profileAPI = {
     getProfileUser(userId) {

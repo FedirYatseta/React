@@ -1,25 +1,45 @@
 import React from 'react';
-import {Redirect} from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 import DialogsItem from './DialogItem/DialogItem';
 import s from './Dialogs.module.css';
 import MessageItem from './MessageItem/MessageItem';
+import { Field, reduxForm } from 'redux-form'
+
+const MassageFrom = (props) => {
+    
+    return (
+        <form onSubmit={props.handleSubmit} className={s.sendMessage}>
+            <div>
+                <Field placeholder={"enter your message"} name={'message'} component={'textarea'} />
+            </div>
+            <div>
+                <button> Send</button>
+            </div>
+        </form>
+    )
+}
+
 
 const Dialogs = (props) => {
 
     let state = props.messagesPage;
     let dialogsElements = state.dialogData.map(d => <DialogsItem name={d.name} key={d.id} id={d.id} />);
-    let messageElements = state.messageData.map(m => <MessageItem message={m.message} key={m.id}/>)
-    let newMessageText = state.newMessageText;
+    let messageElements = state.messageData.map(m => <MessageItem message={m.message} key={m.id} />)
 
-    let addMessage = () => {
-        props.sendMessage();
-    }
-    let changeMessageText = (e) => {
-        let text = e.target.value;
-        props.updateNewMessageBody(text)
+
+
+    let addNewMessage = (values) => {
+        props.sendMessage(values.message)
 
     }
-     if (props.isAuth === false) return <Redirect to={'/login'} />
+
+    const ReduxMessageForm = reduxForm(
+        {
+            form: 'message'
+        }
+    )(MassageFrom)
+
+    if (props.isAuth === false) return <Redirect to={'/login'} />
     return (
         <div className={s.dialogs}>
             <div className={s.dialogItem}>
@@ -29,12 +49,13 @@ const Dialogs = (props) => {
                 <div className={s.messages}>
                     {messageElements}
                 </div>
-                <div className={s.sendMessage}>
-                    <textarea onChange={changeMessageText}
-                     value={newMessageText} />
+                <div >
+                    <ReduxMessageForm onSubmit={addNewMessage} />
+                    {/* <textarea onChange={changeMessageText}
+                        value={newMessageText} />
                     <button onClick={addMessage}>
                         Send
-                    </button>
+                    </button> */}
                 </div>
             </div>
         </div>

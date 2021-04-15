@@ -2,17 +2,14 @@ import { profileAPI } from '../API/api'
 
 let initialState = {
     posts: [],
-    newPostText: 'it-kamasutra.com',
     profile: null,
     searchJob: true,
     status: '',
 }
 
-const ADD_POST = 'ADD-POST'
-const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-TEXT-POST'
+const ADD_POST = 'ADD_POST'
 const SET_USER_PROFILE = 'SET_USER_PROFILE'
 const SET_JOB_PROFILE = 'SET_JOB_PROFILE'
-
 const USER_STATUS = "USER_STATUS"
 
 
@@ -20,22 +17,17 @@ const ProfilePageReducer = (state = initialState, action) => {
 
     switch (action.type) {
         case ADD_POST: {
-            let newPostText = {
+            let post = {
                 id: 5,
-                message: state.newPostText,
+                message: action.post,
                 count: 21
             };
             return {
                 ...state,
-                posts: [...state.posts, newPostText],
-                newPostText: ''
+                posts: [...state.posts, post],
+               
             }
         }
-        case UPDATE_NEW_POST_TEXT:
-            return {
-                ...state,
-                newPostText: action.newText
-            }
         case SET_USER_PROFILE:
             return { ...state, profile: action.profile }
 
@@ -50,11 +42,7 @@ const ProfilePageReducer = (state = initialState, action) => {
 }
 
 
-export const AddPostActionCreator = () => {
-    return {
-        type: 'ADD-POST'
-    }
-}
+export const AddPostActionCreator = (post) => ({ type: ADD_POST, post})
 export const UpdateNewPostActionCreator = (text) => ({ type: 'UPDATE-NEW-TEXT-POST', text })
 export const setUserProfile = (profile) => ({ type: 'SET_USER_PROFILE', profile })
 export const setJobProfile = (job) => ({ type: 'SET_JOB_PROFILE', job })
