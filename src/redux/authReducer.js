@@ -1,7 +1,7 @@
 import { authMeAPI } from '../API/api'
 
 let initialState = {
-    userid: null,
+    userId: null,
     email: null,
     login: null,
     isAuth: false
@@ -9,21 +9,15 @@ let initialState = {
 
 const AUTH_ME = 'AUTH_ME'
 
-const LOGIN_FORM = 'LOGIN_FORM'
-
 const AuthReducer = (state = initialState, action) => {
     switch (action.type) {
         case AUTH_ME:
-            return { ...state, ...action.data, isAuth: true }
-        case LOGIN_FORM:
-            return { ...state, ...action.data }
+            return { ...state, ...action.payload }
         default:
             return state;
     }
 }
-export const setAuthMe = (id, email, login) => ({ type: 'AUTH_ME', data: { id, email, login } })
-
-export const setLogin = (email, password, rememberMe) => ({ type: 'LOGIN_FORM', data: { email, password, rememberMe } })
+export const setAuthMe = (id, email, login, isAuth) => ({ type: 'AUTH_ME', payload: { id, email, login, isAuth } })
 
 export const loginThunk = () => {
     return (dispatch) => {
@@ -31,25 +25,33 @@ export const loginThunk = () => {
             .then(response => {
                 if (response.data.resultCode === 0) {
                     let { email, id, login } = response.data.data;
-                    dispatch(setAuthMe(id, email, login))
+                    dispatch(setAuthMe(id, email, login, true))
                 }
             })
     }
 }
 
-export const loginForm = () => {
+export const loginForm = (email, password, rememberMe) => {
     return (dispatch) => {
-        authMeAPI.login()
+        authMeAPI.login(email, password, rememberMe)
+            .then(response => {
+                debugger
+                if (response.data.resultCode === 0) {
+                    dispatch(setAuthMe())
+                }
+            })
+    }
+}
+
+export const logout = () => {
+    return (dispatch) => {
+        authMeAPI.logout()
             .then(response => {
                 if (response.data.resultCode === 0) {
-                    let { email, password, rememberMe } = response.data.data;
-                    dispatch(setLogin(email, password, rememberMe))
+                    dispatch(setAuthMe(null, null, null, false))
                 }
             })
     }
 }
-
-
-
 
 export default AuthReducer;
