@@ -6,7 +6,7 @@ import s from './../Users/Users.module.css';
 
 
 let Users = (props) => {
-    let pagesCount = Math.ceil(props.totalUserCount / props.pageSize)
+   // let pagesCount = Math.ceil(props.totalUserCount / props.pageSize)
     let pages = []
     for (let i = 1; i <= 10; i++) {
         pages.push(i);

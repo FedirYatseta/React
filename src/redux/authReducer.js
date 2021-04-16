@@ -28,13 +28,16 @@ export const loginThunk = () => {
                     let { email, id, login } = response.data.data;
                     dispatch(setAuthMe(id, email, login, true))
                 } 
+     
             })
+
     }
+
 }
 
 export const loginForm = (email, password, rememberMe) => {
     return (dispatch) => {
-        authMeAPI.login(email, password, rememberMe)
+       return authMeAPI.login(email, password, rememberMe)
             .then(response => {
                 debugger
                 if (response.data.resultCode === 0) {
