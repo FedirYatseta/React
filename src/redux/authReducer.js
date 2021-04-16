@@ -1,3 +1,4 @@
+import { stopSubmit } from 'redux-form'
 import { authMeAPI } from '../API/api'
 
 let initialState = {
@@ -17,7 +18,7 @@ const AuthReducer = (state = initialState, action) => {
             return state;
     }
 }
-export const setAuthMe = (id, email, login, isAuth) => ({ type: 'AUTH_ME', payload: { id, email, login, isAuth } })
+export const setAuthMe = (userId, email, login, isAuth) => ({ type: 'AUTH_ME', payload: { userId, email, login, isAuth } })
 
 export const loginThunk = () => {
     return (dispatch) => {
@@ -26,7 +27,7 @@ export const loginThunk = () => {
                 if (response.data.resultCode === 0) {
                     let { email, id, login } = response.data.data;
                     dispatch(setAuthMe(id, email, login, true))
-                }
+                } 
             })
     }
 }
@@ -38,6 +39,10 @@ export const loginForm = (email, password, rememberMe) => {
                 debugger
                 if (response.data.resultCode === 0) {
                     dispatch(setAuthMe())
+                }else {
+                    let message = response.data.messages.length > 0 ? response.data.messages[0] : "Some Error"
+                    let action = stopSubmit('login', {_error: message});
+                    dispatch(action);
                 }
             })
     }

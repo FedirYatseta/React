@@ -8,3 +8,10 @@
 .form_control.error span {
     color:red 
 }
+
+.form_summary_error{
+    border: red solid 1px;
+    padding: 5px;
+    color:rgb(228, 28, 2);
+
+}

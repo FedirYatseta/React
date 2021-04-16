@@ -53,6 +53,7 @@ export const profilePage = (userId) => {
         dispatch(setJobProfile(false))
         profileAPI.getProfileUser(userId)
             .then(data => {
+                debugger;
                 dispatch(setJobProfile(true))
                 dispatch(setUserProfile(data))
             })
@@ -63,7 +64,6 @@ export const getUserStatus = (userId) => {
     return (dispatch) => {
         profileAPI.getStatus(userId)
             .then(data => {
-
                 dispatch(usersStatus(data));
             });
     }
@@ -75,7 +75,6 @@ export const updateStatus = (status) => {
         profileAPI.updateStatusAPI(status)
             .then(response => {
                 if (response.data.resultCode === 0) { dispatch(usersStatus(status)); }
-
             });
     }
 }
