@@ -33,12 +33,11 @@ const LoginForm = (props) => {
           component={Input}
           validate={[required]} />
       </div>
-     {props.error &&
-      <div className={style.form_summary_error}>
-        {props.error}
-      </div>
-
-     } 
+      {props.error &&
+        <div className={style.form_summary_error}>
+          {props.error}
+        </div>
+      }
       <div>
         <button> Login</button>
       </div>
