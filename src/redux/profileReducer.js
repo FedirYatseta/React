@@ -11,6 +11,7 @@ const ADD_POST = 'ADD_POST'
 const SET_USER_PROFILE = 'SET_USER_PROFILE'
 const SET_JOB_PROFILE = 'SET_JOB_PROFILE'
 const USER_STATUS = "USER_STATUS"
+const DELETE_POST = "DELETE_POST"
 
 
 const ProfilePageReducer = (state = initialState, action) => {
@@ -37,6 +38,9 @@ const ProfilePageReducer = (state = initialState, action) => {
         case USER_STATUS: {
             return { ...state, status: action.status }
         }
+        case DELETE_POST: {
+            return {...state, post: state.posts.filter( p => p.id != action.id)}
+        }
         default: return state;
     }
 }
@@ -47,6 +51,8 @@ export const UpdateNewPostActionCreator = (text) => ({ type: 'UPDATE-NEW-TEXT-PO
 export const setUserProfile = (profile) => ({ type: 'SET_USER_PROFILE', profile })
 export const setJobProfile = (job) => ({ type: 'SET_JOB_PROFILE', job })
 export const usersStatus = (status) => ({ type: 'USER_STATUS', status });
+
+export const deletePost = (id) => ({ type: 'DELETE_POST', id });
 
 export const profilePage = (userId) => {
     return (dispatch) => {
