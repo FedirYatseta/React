@@ -12,7 +12,7 @@ class ProfileContainer extends React.Component {
 
     let userId = this.props.match.params.userId;
     if (!userId) {
-      debugger;
+   
       userId = this.props.loginUserId
       if (!userId) {
         this.props.history.push("./login");
@@ -33,7 +33,6 @@ class ProfileContainer extends React.Component {
     )
   }
 }
-debugger;
 let mapStateToProps = (state) => ({
 
   profile: state.profilePage.profile,

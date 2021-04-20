@@ -47,17 +47,13 @@ export const authMeAPI = {
     }
 }
 
-
 export const profileAPI = {
-   
     getProfileUser(userId) {
-        debugger;
-        return  instance.get('profile/' + userId).then(
-           
-            response => response.data)
+        return  instance.get('profile/' + userId)
     },
     getStatus(userId) {
-        return instance.get(`profile/status/${userId}`).then(response => response.data)
+        debugger;
+        return instance.get(`profile/status/${userId}`)
 
     },
     updateStatusAPI(status) {
