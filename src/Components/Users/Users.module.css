@@ -9,3 +9,38 @@
     background-color: beige;
 }
 
+.userBlock {
+
+display:flex;
+width: 170px;
+flex-wrap:wrap;
+margin: 10px;
+flex-direction: column;
+}
+
+.userBlock div{
+display:flex;
+flex-direction:column;
+align-items: center;
+}
+
+.userBlockWrap div  {
+    display:flex;
+    flex-wrap:wrap;
+}
+
+.UsersContainer div {
+  display:flex;
+  justify-content: center;
+}
+
+
+.preloader{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position:absolute;
+    z-index: 9999;
+    top: 25%;
+    left: 50%;
+}

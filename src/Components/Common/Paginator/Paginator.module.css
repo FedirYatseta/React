@@ -2,9 +2,21 @@
     display: inline-flex;
     padding: 2px;
     margin: 2px;
-    border: 1px solid #343434;
+    color: #fff;
+    width: 30px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.selectPage{
+   font-weight: bold;
+   border-radius: 5px;
+   background-color: darkslateblue;
+}
+.wrapperButton:hover ,
+.wrapperButton:focus {
+    background: rgb(108, 104, 136);
 }
 
-.selectPage{
-    font-weight: bold;
+.wrapperButton {
+   text-align: center;
 }
