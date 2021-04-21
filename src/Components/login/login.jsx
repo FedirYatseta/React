@@ -1,6 +1,6 @@
 import React from 'react';
 //import s from '../login/login.module.css';
-import { loginForm, logout } from '../../redux/authReducer'
+import { loginForm } from '../../redux/authReducer'
 import { Field, reduxForm } from 'redux-form'
 import { connect } from 'react-redux';
 import { Input } from '../../utils/FormsControls';
@@ -31,7 +31,7 @@ const LoginForm = (props) => {
           type={"checkbox"}
           name={"rememberMe"}
           component={Input}
-          validate={[required]} />
+          />
       </div>
       {props.error &&
         <div className={style.form_summary_error}>
@@ -52,7 +52,6 @@ const ReduxLoginForm = reduxForm({
 
 const Login = (props) => {
   const onSubmit = (formData) => {
-    debugger;
     props.loginForm(formData.email, formData.password, formData.rememberMe)
   }
 
@@ -71,4 +70,4 @@ const mapStateToProps = (state) => ({
   isAuth: state.authMe.isAuth
 })
 
-export default connect(mapStateToProps, { loginForm, logout })(Login)
+export default connect(mapStateToProps, { loginForm })(Login)

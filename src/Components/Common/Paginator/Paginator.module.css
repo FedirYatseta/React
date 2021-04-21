@@ -1,0 +1,10 @@
+.wrapperButton{
+    display: inline-flex;
+    padding: 2px;
+    margin: 2px;
+    border: 1px solid #343434;
+}
+
+.selectPage{
+    font-weight: bold;
+}

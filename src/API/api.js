@@ -35,7 +35,7 @@ export const authMeAPI = {
         password,
         rememberMe = false,
         captcha) {
-        return instance.post(`auth/login/`, {
+        return instance.post(`auth/login`, {
             email,
             password,
             rememberMe,
@@ -43,7 +43,7 @@ export const authMeAPI = {
         })
     },
     logout() {
-        return instance.delete(`auth/login/`)
+        return instance.delete(`auth/login`)
     }
 }
 
@@ -52,7 +52,6 @@ export const profileAPI = {
         return  instance.get('profile/' + userId)
     },
     getStatus(userId) {
-        debugger;
         return instance.get(`profile/status/${userId}`)
 
     },

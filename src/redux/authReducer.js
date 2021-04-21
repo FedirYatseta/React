@@ -13,12 +13,16 @@ const AUTH_ME = 'AUTH_ME'
 const AuthReducer = (state = initialState, action) => {
     switch (action.type) {
         case AUTH_ME:
-            return { ...state, ...action.payload }
+            return {
+                 ...state, 
+                 ...action.payload 
+                }
         default:
             return state;
     }
 }
-export const setAuthMe = (userId, email, login, isAuth) => ({ type: 'AUTH_ME', payload: { userId, email, login, isAuth } })
+export const setAuthMe = (userId, email, login, isAuth) => ({
+     type: 'AUTH_ME', payload: { userId, email, login, isAuth } })
 
 export const loginThunk = () => async (dispatch) => {
     let response = await authMeAPI.auth();
@@ -33,7 +37,7 @@ export const loginThunk = () => async (dispatch) => {
 export const loginForm = (email, password, rememberMe) => async (dispatch) => {
     let response = await authMeAPI.login(email, password, rememberMe)
     if (response.data.resultCode === 0) {
-        dispatch(setAuthMe())
+        dispatch(loginThunk())
     } else {
         let message = response.data.messages.length > 0 ? response.data.messages[0] : "Some Error"
         let action = stopSubmit('login', { _error: message });
