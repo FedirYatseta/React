@@ -6,17 +6,29 @@ import job from '../../../img/job.jpg';
 import ava from '../../../img/ava.png';
 import Preloader from '../../Preloader/Preloader';
 import ProfileStatusWithHooks from './ProfileStatusWithHooks';
+
+
 const ProfileInfo = (props) => {
+
+
+
   if (!props.profile) {
     return <div className={s.preloaderContainer}> <Preloader /></div>
   }
+
+  const onMainPhotoSelected = (e) => {
+ if(e.target.files.length){
+   props.savePhoto(e.target.files[0])
+ }
+  }
+
   return (
     <div className={s.ProfileInfo}>
       <div>
         <div> Статус:<ProfileStatusWithHooks status={props.status } updateStatus={props.updateStatus} /></div>
         <div><h1>{props.profile.fullName}</h1></div>
         <img src={props.profile.photos.large != null ? props.profile.photos.large : `${ava}`} alt='' />
-
+{props.isOwner && <input  type={"file"} onChange={onMainPhotoSelected }/>}
       </div>
 
       <div className={s.contact}>
