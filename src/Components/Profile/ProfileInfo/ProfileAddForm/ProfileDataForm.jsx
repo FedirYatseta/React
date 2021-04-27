@@ -5,7 +5,9 @@ import React from 'react'
 import { useForm } from "react-hook-form";
 import s from "./ProfileDataForm.module.css"
 
-const ProfileDataForm = ({ saveProfile }) => {
+
+const ProfileDataForm = ({profile,  saveProfile} ) => {
+  debugger
   const { register, handleSubmit, watch, control, formState: { errors } } = useForm();
   //const onSubmit = data => console.log(data);
   const onSubmit = data => saveProfile(data);
@@ -17,13 +19,13 @@ const ProfileDataForm = ({ saveProfile }) => {
     <form className={s.form} onSubmit={handleSubmit(onSubmit)}>
       {/* register your input into the hook by invoking the "register" function */}
       <div><b>AboutMe</b>
-        <input defaultValue="AboutMe" {...register("AboutMe", { required: true })} />
+        <input defaultValue={profile.aboutMe} {...register("AboutMe", { required: true })} />
       </div>
       <div><b>LookingForAJobDescription</b>
-        <input defaultValue="LookingForAJobDescription" {...register("LookingForAJobDescription", { required: true })} />
+        <input defaultValue={profile.lookingForAJobDescription} {...register("LookingForAJobDescription", { required: true })} />
       </div>
       <div><b>Full Name</b>
-        <input defaultValue="FullName" {...register("FullName", { required: true })} />
+        <input defaultValue={profile.fullName} {...register("FullName", { required: true })} />
       </div>
 
       {errors.fullname && <span>This fullname is required</span>}

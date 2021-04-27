@@ -67,6 +67,7 @@ export const savePhotoSuccess = (photos) => ({ type: 'SAVE_PHOTO', photos });
 export const saveProfileSuccess = (contact) => ({ type: 'SAVE_PHOTO', contact });
 
 export const profilePage = (userId) => async (dispatch) => {
+    debugger
     dispatch(setJobProfile(false))
     const response = await profileAPI.getProfileUser(userId)
     dispatch(setUserProfile(response.data))
@@ -90,11 +91,14 @@ export const savePhoto = (file) => async (dispatch) => {
      { dispatch(savePhotoSuccess(file)); }
 }
 
-export const saveProfile = (contact) => async (dispatch) => {
-    debugger; const response = await profileAPI.saveProfileQuery(contact)
-    if (response.data.resultCode === 0)
-   
-     { dispatch(saveProfileSuccess(contact)); }
+export const saveProfile = (contact) => async (dispatch, getState) => {
+    debugger; 
+    const userId = getState().authMe.userId
+    const response = await profileAPI.saveProfileQuery(contact)
+    if (response.data.resultCode === 0){ 
+       
+     dispatch(profilePage(userId)); 
+    }
 }
 
 
