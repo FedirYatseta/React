@@ -13,6 +13,7 @@ const SET_JOB_PROFILE = 'SET_JOB_PROFILE'
 const USER_STATUS = "USER_STATUS"
 const DELETE_POST = "DELETE_POST"
 const SAVE_PHOTO = "SAVE_PHOTO"
+const SAVE_PROFILE = "SAVE_PROFILE"
 
 
 const ProfilePageReducer = (state = initialState, action) => {
@@ -46,6 +47,10 @@ const ProfilePageReducer = (state = initialState, action) => {
         case SAVE_PHOTO: {
             return { ...state, profile: {...state.profile, photos:action.photos} }
         }
+
+        case SAVE_PROFILE: {
+            return { ...state, profile: {...state.contact} }
+        }
         default: return state;
     }
 }
@@ -58,6 +63,8 @@ export const setJobProfile = (job) => ({ type: 'SET_JOB_PROFILE', job })
 export const usersStatus = (status) => ({ type: 'USER_STATUS', status });
 export const deletePost = (id) => ({ type: 'DELETE_POST', id });
 export const savePhotoSuccess = (photos) => ({ type: 'SAVE_PHOTO', photos });
+
+export const saveProfileSuccess = (contact) => ({ type: 'SAVE_PHOTO', contact });
 
 export const profilePage = (userId) => async (dispatch) => {
     dispatch(setJobProfile(false))
@@ -82,6 +89,14 @@ export const savePhoto = (file) => async (dispatch) => {
     if (response.data.resultCode === 0)
      { dispatch(savePhotoSuccess(file)); }
 }
+
+export const saveProfile = (contact) => async (dispatch) => {
+    debugger; const response = await profileAPI.saveProfileQuery(contact)
+    if (response.data.resultCode === 0)
+   
+     { dispatch(saveProfileSuccess(contact)); }
+}
+
 
 
 export default ProfilePageReducer;

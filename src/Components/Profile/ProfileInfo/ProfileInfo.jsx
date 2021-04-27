@@ -27,13 +27,13 @@ const ProfileInfo = (props) => {
       <div>
         <div> Статус:<ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus} /></div>
         <div><h1>{props.profile.fullName}</h1></div>
-        <img src={props.profile.photos.large != null ? props.profile.photos.large : `${ava}`} alt='' />
+        <img src={props.profile.photos.large != null || props.profile.photos.large!= undefined ? props.profile.photos.large : `${ava}`} alt='' />
         <div>{props.isOwner && <input type={"file"} onChange={onMainPhotoSelected} />}</div>
       </div>
       
       <div className={s.contact}>
       {editMode
-        ? <ProfileDataForm />
+        ? <ProfileDataForm saveProfile={props.saveProfile} />
         : <ProfileData goToEditMode={() => { setEditMode(true) }} profile={props.profile} isOwner={props.isOwner} />}
       </div>
     </div>
@@ -45,10 +45,10 @@ const ProfileData = ({ profile, isOwner, goToEditMode }) => {
   return (<div>
     {isOwner && <div><button onClick={goToEditMode}>edit</button></div>}
     <div>
-      <span>Про мене - {profile.aboutMe ? <b>---</b> : <input />} </span>
+      <span>Про мене - {profile.aboutMe !== '' ? <b>{profile.aboutMe} </b> : <input />} </span>
     </div>
-    <div className={s.jobimg}>{profile.lookingForAJob ? <img src={arh} alt='' /> : <img src={job} alt='' />}
-      <div>{profile.lookingForAJobDescription ? <b>---</b> : <input />}</div> </div>
+    <div className={s.jobimg}>{profile.lookingForAJob ? <div><img src={arh} alt='' />Шукаю</div> : <div><img src={job} alt='' />Маю</div>}
+      <div>{profile.lookingForAJobDescription !== '' ? <b>{profile.lookingForAJobDescription}</b> : <input />}</div> </div>
     <div>
       {Object.keys(profile.contacts).map(key => {
         return <Contact key={key} contactTitle={key} contactValue={profile.contacts[key]} />

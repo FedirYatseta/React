@@ -23,7 +23,7 @@ export const usersAPI = {
     follow(userId) {
         return instance.post(`follow/${userId}`)
     },
-  
+
 
 
 }
@@ -50,7 +50,7 @@ export const authMeAPI = {
 
 export const profileAPI = {
     getProfileUser(userId) {
-        return  instance.get('profile/' + userId)
+        return instance.get('profile/' + userId)
     },
     getStatus(userId) {
         return instance.get(`profile/status/${userId}`)
@@ -61,14 +61,20 @@ export const profileAPI = {
             status: status
         })
     },
-    savePhotoSuccess(photoFile){
+    savePhotoSuccess(photoFile) {
         debugger;
         var formData = new FormData();
         formData.append("image", photoFile)
-        return instance.put(`profile/photo`,formData, {
-            headers:{
+        return instance.put(`profile/photo`, formData, {
+            headers: {
                 'Content-Type': 'multipart/form-data'
             }
         })
+    },
+
+    saveProfileQuery(contact) {
+        debugger;
+        return instance.put(`profile/`, contact
+        )
     }
 }
