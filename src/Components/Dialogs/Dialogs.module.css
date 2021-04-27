@@ -65,6 +65,7 @@
 
 .sendMessage {
     display: flex;
+    justify-content: flex-end;
     width: 100fr;
     float:right;
 
