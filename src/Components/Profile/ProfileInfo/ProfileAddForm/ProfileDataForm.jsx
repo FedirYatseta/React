@@ -15,6 +15,8 @@ const ProfileDataForm = ({ profile, saveProfile, setEditMode }) => {
         instagram : profile.contacts.instagram
         
       }]
+
+      
     }
   }
 
@@ -52,24 +54,29 @@ const ProfileDataForm = ({ profile, saveProfile, setEditMode }) => {
         {fields.map((item) => {
           return (
             <div key={item.id}>
-              <input
+              <span>facebook</span>
+              <input 
                 defaultValue={`${item.facebook}`} // make sure to set up defaultValue
                 {...register(`contacts.facebook`)}
               />
+               <span>github</span>
                <input
                 defaultValue={`${item.github}`} // make sure to set up defaultValue
                 {...register(`contacts.github`)}
               />
+               <span>youtube</span>
                <input
                 defaultValue={`${item.youtube}`} // make sure to set up defaultValue
                 {...register(`contacts.youtube`)}
               />
+               <span>twitter</span>
                <input
                 defaultValue={`${item.twitter}`} // make sure to set up defaultValue
                 {...register(`contacts.twitter`)}
               />
+               <span>instagram</span>
                <input
-                defaultValue={`${item.instagram}`} // make sure to set up defaultValue
+                defaultValue={`${item.instagram }`} // make sure to set up defaultValue
                 {...register(`contacts.instagram`)}
               />
 

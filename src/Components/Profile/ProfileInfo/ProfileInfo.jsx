@@ -25,9 +25,10 @@ const ProfileInfo = (props) => {
   return (
     <div className={s.ProfileInfo}>
       <div>
+        
         <div> Статус:<ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus} /></div>
         <div><h1>{props.profile.fullName}</h1></div>
-        <img src={props.profile.photos.large != undefined ?  props.profile.photos.large : `${ava}`} alt='' />
+        <div className= "float-sm-left"><img src={props.profile.photos.large != undefined ?  props.profile.photos.large : `${ava}`} alt='' /></div>
         <div>{props.isOwner && <input type={"file"} onChange={onMainPhotoSelected} />}</div>
       </div>
       
@@ -49,7 +50,7 @@ const ProfileData = ({ profile, isOwner, goToEditMode }) => {
     </div>
     <div className={s.jobimg}>{profile.lookingForAJob ? <div><img src={arh} alt='' />Шукаю</div> : <div><img src={job} alt='' />Маю</div>}
       <div><b>Мої навики: </b> {profile.lookingForAJobDescription !== '' ? <b>{profile.lookingForAJobDescription}</b> : <input />}</div> </div>
-    <div>
+    <div className={s.contact}>
       {Object.keys(profile.contacts).map(key => {
         return <Contact key={key} contactTitle={key} contactValue={profile.contacts[key]} />
       }
@@ -62,6 +63,6 @@ const ProfileData = ({ profile, isOwner, goToEditMode }) => {
 }
 
 const Contact = ({ contactTitle, contactValue }) => {
-  return <div className='container'><b>{contactTitle}</b>: {contactValue} </div>
+  return <div className='container'><b>{contactTitle}</b>: {contactValue !== null && contactValue !== '' ? contactValue: 'Add some' } </div>
 }
 export default ProfileInfo;

@@ -6,7 +6,8 @@ import { maxLengthCreator, required } from '../../../utils/validators';
 import { Textarea } from '../../../utils/FormsControls';
 const maxLength10 = maxLengthCreator(10)
 const MyPostForm = (props) => {
-  return (
+  return (<div className="container">
+
     <form onSubmit={props.handleSubmit}>
       <div>
         <Field
@@ -19,6 +20,8 @@ const MyPostForm = (props) => {
         <button>Add Post</button>
       </div>
     </form>
+  </div>
+
   )
 }
 
@@ -30,10 +33,10 @@ const MyPosts = React.memo(props => {
   }
 
 
-  const ReduxPostForm = reduxForm({form: 'post' })(MyPostForm)
+  const ReduxPostForm = reduxForm({ form: 'post' })(MyPostForm)
 
   return (
-    <div>
+    <div className={s.addpost}>
       <h3>My Posts</h3>
       <div>
         <ReduxPostForm onSubmit={onAddPost} />
