@@ -33,7 +33,7 @@ const ProfileInfo = (props) => {
       
       <div className={s.contact}>
       {editMode
-        ? <ProfileDataForm profile={props.profile} saveProfile={props.saveProfile} />
+        ? <ProfileDataForm profile={props.profile} saveProfile={props.saveProfile} setEditMode={setEditMode} />
         : <ProfileData goToEditMode={() => { setEditMode(true) }} profile={props.profile} isOwner={props.isOwner} />}
       </div>
     </div>

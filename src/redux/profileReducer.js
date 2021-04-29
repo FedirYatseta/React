@@ -67,7 +67,6 @@ export const savePhotoSuccess = (photos) => ({ type: 'SAVE_PHOTO', photos });
 export const saveProfileSuccess = (contact) => ({ type: 'SAVE_PHOTO', contact });
 
 export const profilePage = (userId) => async (dispatch) => {
-    debugger
     dispatch(setJobProfile(false))
     const response = await profileAPI.getProfileUser(userId)
     dispatch(setUserProfile(response.data))

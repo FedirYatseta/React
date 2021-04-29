@@ -6,19 +6,19 @@ import {
 } from "@material-ui/core";
 
 const theme = createMuiTheme({
-    palette: {
-      type: "dark"
-    }
-  });
+  palette: {
+    type: "dark"
+  }
+});
 export default ({ control }) => (
-    <ThemeProvider theme={theme}>
-      <div className="container">
+  <ThemeProvider theme={theme}>
+    <div className="container">
 
-<section>
+      <section>
         <Controller
           name="lookingForAJob"
           control={control}
-          
+
           render={({ field }) => (
             <Checkbox
               onChange={(e) => field.onChange(e.target.checked)}
@@ -27,6 +27,6 @@ export default ({ control }) => (
           )}
         />
       </section>
-      </div>
-      </ThemeProvider>
+    </div>
+  </ThemeProvider>
 )

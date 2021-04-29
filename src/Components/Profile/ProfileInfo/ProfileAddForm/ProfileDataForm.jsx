@@ -1,19 +1,35 @@
-
-
 import Checkbox from './checkbox';
 import React from 'react'
-import { useForm } from "react-hook-form";
+import { useForm, useFieldArray, Controller } from "react-hook-form";
 import s from "./ProfileDataForm.module.css"
 
-
-const ProfileDataForm = ({profile,  saveProfile} ) => {
+const ProfileDataForm = ({ profile, saveProfile, setEditMode }) => {
   debugger
-  const { register, handleSubmit, watch, control, formState: { errors } } = useForm();
+  const { register, handleSubmit, watch, control, formState: { errors } } = useForm({
+    defaultValues: {
+      contacts: [{
+        facebook: profile.contacts.facebook,
+        github : profile.contacts.github,
+        youtube : profile.contacts.youtube,
+        twitter : profile.contacts.twitter,
+        instagram : profile.contacts.instagram
+        
+      }]
+    }
+  }
+
+  );
   //const onSubmit = data => console.log(data);
-  const onSubmit = data => saveProfile(data);
-
+   const onSubmit = data => {
+     saveProfile(data);
+     setEditMode(false)};
+  const { fields } = useFieldArray(
+    {
+      control,
+      name: "contacts"
+    }
+  );
   console.log(watch("example")); // watch input value by passing the name of it
-
   return (
     /* "handleSubmit" will validate your inputs before invoking "onSubmit" */
     <form className={s.form} onSubmit={handleSubmit(onSubmit)}>
@@ -27,40 +43,39 @@ const ProfileDataForm = ({profile,  saveProfile} ) => {
       <div><b>Full Name</b>
         <input defaultValue={profile.fullName} {...register("FullName", { required: true })} />
       </div>
-
       {errors.fullname && <span>This fullname is required</span>}
       <div>
         <b>lookingForAJob</b>
       </div>
-      {/*       
-      <div>
-        <b>Facebook</b><input defaultValue="facebook" {...register("facebook", { required: true })} />
-      </div>
-      <div><b>website</b>
-        <input defaultValue="website" {...register("website", { required: true })} />
-      </div>
-      <div><b>vk</b>
-        <input defaultValue="vk" {...register("vk", { required: true })} />
-      </div>
-      <div><b>twitter</b>
-        <input defaultValue="twitter" {...register("twitter", { required: true })} />
-      </div>
-      <div><b>instagram</b>
-        <input defaultValue="instagram" {...register("instagram", { required: true })} />
-      </div>
-      <div><b>youtube</b>
-        <input defaultValue="youtube" {...register("youtube", { required: true })} />
-      </div>
-      <div><b>github</b>
-        <input defaultValue="github" {...register("github", { required: true })} />
-      </div>
-      <div><b>mainLink</b>
-        <input defaultValue="mainLink" {...register("mainLink", { required: true })} />
-      </div>
-
-      {/* errors will return when field validation fails  
-      {errors.mainLink && <span>This field is required</span>} */}
       <Checkbox control={control} />
+
+        {fields.map((item) => {
+          return (
+            <div key={item.id}>
+              <input
+                defaultValue={`${item.facebook}`} // make sure to set up defaultValue
+                {...register(`contacts.facebook`)}
+              />
+               <input
+                defaultValue={`${item.github}`} // make sure to set up defaultValue
+                {...register(`contacts.github`)}
+              />
+               <input
+                defaultValue={`${item.youtube}`} // make sure to set up defaultValue
+                {...register(`contacts.youtube`)}
+              />
+               <input
+                defaultValue={`${item.twitter}`} // make sure to set up defaultValue
+                {...register(`contacts.twitter`)}
+              />
+               <input
+                defaultValue={`${item.instagram}`} // make sure to set up defaultValue
+                {...register(`contacts.instagram`)}
+              />
+
+            </div>
+          );
+        })}
       <div className={s.buttonSubmit}><input type="submit" /></div>
     </form>
   );
